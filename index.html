@@ -5,38 +5,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>CSS Converter(Twip > Bakuma)</title>
+    <style>
+        textarea {
+            resize: none;
+        }
+        .main_setting {
+            width: 50%;
+            display: block;
+        }
+        .sub_setting {
+            width: 50%;
+            display: block;
+        }
+        .main_textarea {
+            width: 50%;
+            height: 40%;
+            resize: none;
+        }
+        .sub_textarea {
+            width: 10%;
+            height: 40%;
+            resize: none;
+        }
+        button {
+            width: 50%;
+            height: 40%;
+        }
+
+        .too {
+            display: inline;
+        }
+        
+    </style>
 </head>
 <body>
-    <textarea type="text" id="input_text"></textarea>
+    <div class="too">
+    <div class="main_setting">
+    <div>
+        <textarea placeholder="트윕 CSS 코드를 붙여넣어주세요." class="main_textarea" type="text" id="input_text"></textarea>
+    </div>
     <button onclick="convert_attive()">convert</button>
-    <textarea type="text" id="output_text"></textarea>
-
+    <div>
+        <textarea placeholder="BakumaTV에 적용 할 수 있는 코드가 여기로 나옵니다." class="main_textarea" type="text" id="output_text"></textarea>
+    </div>
+</div>
+    <div class="sub_setting">
+    <textarea placeholder="폰트 사이즈를 여기 적어주세요. 단위:px" class=".sub_textarea" id="font_size"></textarea>
+    <div>
+        <span>폰트 색상을 골라주세요.</span>
+        <input type="color" id="text_color"/>
+    </div>
+    
+</div>
+</div>
 <script>
 
 
 function convert_attive(){
+
 var text_1 = document.getElementById("input_text").value;
+var font_size = document.getElementById("font_size").value + "px";
+var text_color = document.getElementById("text_color").value;
 var fontface = "@font-face {\nfont-family: 'omyu_pretty';\nsrc: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2') format('woff2');\nfont-weight: normal;\nfont-style: normal;\n}\nhtml { font-size: 15px; font-family: 'omyu_pretty' !important; background-color: rgba(0,0,0,0) }\n"
 
+if (document.getElementById("font_size").value = null){
+    alert("폰트 크기를 지정해주세요! 기본값:15px");
+} else {
 /*누군가 완성해줘... replace 앞에는 대상 텍스트 뒤에는 뭘로 바꿀건지 정하는 메서드란말이에요...
-이거를 여러개 시전을 해서, 여러분만의 컨버터를 만드는겁니다. 흑흑*/ 
+이거를 여러개 시전을 해서, 여러분만의 컨버터를 만드는겁니다. 흑흑흑*/ 
 var result1 = text_1.replace(/;/gi," !important;");
-var result2 = result1.replace("/\$message_hide_delays/", "600s");
-var result3 = result2.replace(/\\$font_sizepx/gi, "15px");
-var result4 = result3.replace(/\\#log {/gi, ".chat-container.chat-container-vertical.chat-container-left {");
-var result5 = result4.replace(/\\.name {/gi, ".message-username.message-username-top {");
-var result6 = result5.replace("\\.message {"/gi, "div.message-card.message-card-left {");
-var result7 = result6.replace(/\\.meta {/g, ".chat-container.chat-container-vertical.chat-container-left {");
-var result8 = result7.replace(/\\$font_face/gi, "'omyu_pretty'" + " !important");
-var result9 = result8.replace(/\\$background_color/gi, "none");
-var result10 = result9.replace(/!important !important;/gi, "!important;");
+var result2 = result1.replace(/\$font_sizepx/gi, font_size);
+var result3 = result2.replace(/\\#log/gi, ".chat-container.chat-container-vertical.chat-container-left");
+var result4 = result3.replace(/\\.name/gi, ".message-username.message-username-top");
+var result5 = result4.replace(/\.message/gi, "div.message-card.message-card-left");
+var result6 = result5.replace(/\\.meta/g, ".chat-container.chat-container-vertical.chat-container-left");
+var result7 = result6.replace(/\$font_face/gi, "'omyu_pretty'" + " !important");
+var result8 = result7.replace(/\$background_color/gi, "none");
+var result9 = result8.replace(/!important !important;/gi, "!important;");
+var result10 = result9.replace(/\$message_hide_delays/gi, "600s");
+var result11 = result10.replace(/\$text_color/gi, text_color);
 
-
-
-document.getElementById("output_text").value = fontface + result10;
-console.log("result2의 값은 " + result2 + "입니다!");
+document.getElementById("output_text").value = fontface + result11;
+console.log("text1의 값은 " + text_1 + "입니다.");
 }
 
+
+}
+//7번째 편집입니다. 예예
 </script>
 </body>
 </html>
