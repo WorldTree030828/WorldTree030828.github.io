@@ -21,14 +21,14 @@ var fontface = "@font-face {\nfont-family: 'omyu_pretty';\nsrc: url('https://cdn
 /*누군가 완성해줘... replace 앞에는 대상 텍스트 뒤에는 뭘로 바꿀건지 정하는 메서드란말이에요...
 이거를 여러개 시전을 해서, 여러분만의 컨버터를 만드는겁니다. 흑흑*/ 
 var result1 = text_1.replace(/;/gi," !important;");
-var result2 = result1.replace(/\$message_hide_delays/gi, "600s");
-var result3 = result2.replace(/\$font_sizepx/gi, "15px");
+var result2 = result1.replace(/\$\message_hide_delays/gi, "600s");
+var result3 = result2.replace(/\$\font_sizepx/gi, "15px");
 var result4 = result3.replace(/#log {/gi, ".chat-container.chat-container-vertical.chat-container-left {");
 var result5 = result4.replace(/.name {/gi, ".message-username.message-username-top {");
 var result6 = result5.replace(/.message {/gi, "div.message-card.message-card-left {");
 var result7 = result6.replace(/.meta {/g, ".chat-container.chat-container-vertical.chat-container-left {");
-var result8 = result7.replace(/\$font_face/gi, "'omyu_pretty'" + " !important");
-var result9 = result8.replace(/\$background_color/gi, "none");
+var result8 = result7.replace(/\$\font_face/gi, "'omyu_pretty'" + " !important");
+var result9 = result8.replace(/\$\background_color/gi, "none");
 var result10 = result9.replace(/!important !important;/gi, "!important;");
 
 
